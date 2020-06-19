@@ -3,7 +3,7 @@
 import ipywidgets as widgets
 from qiskit import QuantumCircuit, Aer, execute
 from qiskit.visualization import plot_bloch_multivector
-from IPython.display import display, clear_output, HTML, Code
+from IPython.display import display, clear_output, HTML
 import numpy as np
 
 from qlib_common import vec_in_braket
@@ -209,11 +209,6 @@ def minicomposer(nqubits=5, bloch=False, dirac=False, qsphere=False):
             latex_statevec.value = vec_in_text_braket(widget_state.statevec)
 
         complete_code = cell_pretext + widget_state.code + cell_ending
-        qiskit_code.value = f"""
-            <div class="output_html" style="line-height: 1.21429em; font-size: 14px">
-                {Code(complete_code, language='python')._repr_html_()}
-            </div>
-        """
 
     display_widget()
     update_output()
