@@ -12,6 +12,9 @@ from matplotlib.patches import Circle
 from mpl_toolkits.mplot3d import proj3d
 from matplotlib import get_backend
 
+import matplotlib.image as mpimg
+from scipy import ndimage
+
 
 class Arrow3D(FancyArrowPatch):
     """Standard 3D arrow."""
@@ -173,11 +176,16 @@ def plot_state_qsphere(rho, figsize=None, ax=None, show_state_labels=False,
     gs = gridspec.GridSpec(nrows=3, ncols=3)
 
     ax = fig.add_subplot(gs[0:3, 0:3], projection='3d')
+    
     ax.axes.set_xlim3d(-1.0, 1.0)
     ax.axes.set_ylim3d(-1.0, 1.0)
     ax.axes.set_zlim3d(-1.0, 1.0)
     ax.axes.grid(False)
     ax.view_init(elev=5, azim=275)
+    
+    cat_im = mpimg.imread('cat.png')
+    show_state_labels = False
+    show_state_cats = True
 
     for _ in range(2 ** num):
         # start with the max
@@ -257,7 +265,7 @@ def plot_state_qsphere(rho, figsize=None, ax=None, show_state_labels=False,
                 alfa = 1
                 if yvalue >= 0.1:
                     alfa = 1.0 - yvalue
-
+                
                 if prob > 0 and show_state_labels:
                     rprime = 1.3
                     angle_theta = np.arctan2(np.sqrt(1 - zvalue ** 2), zvalue)
@@ -270,7 +278,14 @@ def plot_state_qsphere(rho, figsize=None, ax=None, show_state_labels=False,
                         element_text += '\n$%.1f^\\circ$' % (element_angle * 180/np.pi)
                     ax.text(xvalue_text, yvalue_text, zvalue_text, element_text,
                             ha='center', va='center', size=12)
-
+                elif prob > 0 and show_state_cats:
+                    rprime = 0.05
+                    angle_theta = np.arctan2(np.sqrt(1 - zvalue ** 2), zvalue)
+                    xvalue_text = rprime * np.sin(angle_theta) * np.cos(angle)
+                    yvalue_text = rprime * np.sin(angle_theta) * np.sin(angle)
+                    zvalue_text = rprime * np.cos(angle_theta)
+                    rotate_cat = ndimage.rotate(cat_im, angle_theta / np.pi * 180.)
+                    ax.imshow(rotate_cat, aspect='auto', extent=(yvalue_text-0.01, yvalue_text+0.01, zvalue_text, zvalue_text+0.02))
                 ax.plot([xvalue], [yvalue], [zvalue],
                         markerfacecolor=colorstate,
                         markeredgecolor=colorstate,
@@ -298,10 +313,9 @@ def plot_state_qsphere(rho, figsize=None, ax=None, show_state_labels=False,
             we[prob_location] = 0
         else:
             break
-
+    
     n = 32
     theta = np.ones(n)
-
     ax2 = fig.add_subplot(gs[2:, 2:])
     ax2.pie(theta, colors=sns.color_palette("hls", n), radius=0.75)
     ax2.add_artist(Circle((0, 0), 0.5, color='white', zorder=1))
