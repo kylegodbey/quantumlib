@@ -31,8 +31,8 @@ setup(
     install_requires=[
         'seaborn',
         'requests',
-        'qiskit-terra>=0.13,<0.14',
-        'qiskit-aer>=0.5,<0.6',
+        'qiskit-terra>=0.13',
+        'qiskit-aer>=0.5',
         'numpy',
         'ipython',
         'ipywidgets',
