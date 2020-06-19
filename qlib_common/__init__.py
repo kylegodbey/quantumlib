@@ -11,10 +11,10 @@ from qiskit import QuantumCircuit, Aer, execute, assemble
 from qiskit.assembler import disassemble
 from qiskit.qobj import QasmQobj
 
-EX1_SUBEXERCISE_COUNT = 8
-EX4_N = 4
-EX4_REFERENCE_UNITARY: np.ndarray = np.load(
-    os.path.join(os.path.dirname(__file__), 'U.npy'))
+#EX1_SUBEXERCISE_COUNT = 8
+#EX4_N = 4
+#EX4_REFERENCE_UNITARY: np.ndarray = np.load(
+#    os.path.join(os.path.dirname(__file__), 'U.npy'))
 
 
 def bloch_vec(qc: QuantumCircuit) -> np.ndarray:

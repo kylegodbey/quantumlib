@@ -6,8 +6,8 @@ from qiskit.visualization import plot_bloch_multivector
 from IPython.display import display, clear_output, HTML, Code
 import numpy as np
 
-from may4_challenge_common import vec_in_braket
-from may4_challenge.qsphere_plotter import plot_state_qsphere
+from qlib_common import vec_in_braket
+from quantumlib.qsphere_plotter import plot_state_qsphere
 
 
 def vec_in_text_braket(vec):
