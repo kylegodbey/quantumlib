@@ -285,7 +285,7 @@ def plot_state_qsphere(rho, figsize=None, ax=None, show_state_labels=False,
                     yvalue_text = rprime * np.sin(angle_theta) * np.sin(angle)
                     zvalue_text = rprime * np.cos(angle_theta)
                     rotate_cat = ndimage.rotate(cat_im, angle_theta / np.pi * 180.)
-                    ax.imshow(rotate_cat, aspect='auto', extent=(yvalue_text-0.01, yvalue_text+0.01, zvalue_text, zvalue_text+0.02))
+                    ax.imshow(rotate_cat, aspect='auto', extent=(yvalue_text-0.01, yvalue_text+0.01, zvalue_text, zvalue_text+0.02));
                 ax.plot([xvalue], [yvalue], [zvalue],
                         markerfacecolor=colorstate,
                         markeredgecolor=colorstate,

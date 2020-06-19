@@ -12,7 +12,7 @@ setup(
     description='Fork of IBM Quantum Challenge API',
     long_description='Fork of IBM Quantum Challenge API implementing changes for a more cutesy visualizer',
     url='',
-    author='IBM Quantum Community Team + Kyle Godbey',
+    author='IBM Quantum Community Team',
     author_email='me@kyle.ee',
     classifiers=[
         "Intended Audience :: Developers",
