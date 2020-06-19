@@ -183,7 +183,7 @@ def plot_state_qsphere(rho, figsize=None, ax=None, show_state_labels=False,
     ax.axes.grid(False)
     ax.view_init(elev=5, azim=275)
     
-    cat_im = mpimg.imread('cat.png')
+    cat_im = mpimg.imread('https://github.com/kylegodbey/quantumlib/raw/master/quantumlib/cat.png')
     show_state_labels = False
     show_state_cats = True
 
